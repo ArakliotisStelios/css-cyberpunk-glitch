@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<style>
+    .container{
+        position : relative;
+    }
+    .image{
+        position: absolute;
+        top:0px;
+        left:0px;
+        width: 600px;
+        /*perspective: 400px;*/
+        /*transform:  perspective(600px) rotateY(45deg);*/
+        /*clip-path: polygon(43% 0, 100% 0, 75% 47%, 0 53%);*/
+
+    }
+    .image:hover{
+        opacity: 0.4;
+    }
+    .image1 {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        opacity: 0;
+        width: 600px;
+        perspective: 600px;
+        transform: skewY(12deg);
+        clip-path: polygon(50% 0%, 0 0, 100% 54%);
+    }
+    .image2{
+        position: absolute;
+        top:0px;
+        left:0px;
+        opacity: 0;
+        width: 600px;
+        perspective: 600px;
+        transform: skewY(-5deg);
+        clip-path: polygon(0 34%, 75% 13%, 50% 100%, 0 100%);
+    }
+    .image3 {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        opacity: 0;
+        width: 600px;
+        perspective: 600px;
+        transform: skewY(8deg);
+        clip-path: polygon(0 20%, 97% 39%, 100% 81%, 0 53%);
+
+    }
+    .image4{
+        position: absolute;
+        top:0px;
+        left:0px;
+        opacity: 0;
+        width: 600px;
+        perspective: 600px;
+        transform: skewY(21deg);
+        clip-path: polygon(20% 0%, 100% 43%, 81% 80%, 0% 100%);
+        /*filter: hue-rotate(45deg);*/
+
+
+    }
+
+    .image5{
+        position: absolute;
+        top:0px;
+        left:0px;
+        opacity: 0;
+        width: 600px;
+        perspective: 600px;
+        transform: skewY(2deg);
+        clip-path: polygon(100% 0, 0 100%, 100% 54%);
+        /*filter: hue-rotate(20deg);*/
+
+    }
+
+    .image6{
+        position: absolute;
+        top:0px;
+        left:0px;
+        opacity: 0;
+        width: 600px;
+        perspective: 600px;
+        /*transform: skewY(2deg);*/
+        clip-path: polygon(66% 0, 92% 0, 77% 85%, 40% 46%);
+        /*filter: hue-rotate(30deg);*/
+        /*animation: circle 1s infinite;*/
+
+
+    }
+
+    @keyframes circle {
+        0% {  clip-path: polygon(66% 0, 92% 0, 77% 85%, 40% 46%); }
+        /*20% {  clip-path: polygon(80% 0, 92% 0, 80% 0, 10% 78%); }*/
+        /*40% {  clip-path: polygon(66% 0, 92% 0, 77% 85%, 40% 46%); }*/
+        /*60% {  clip-path: polygon(66% 0, 92% 0, 77% 85%, 40% 46%); }*/
+        /*80% {  clip-path: polygon(90% 0, 92% 0, 77% 85%, 40% 46%); }*/
+        100% {  clip-path: initial; }
+    }
+
+</style>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="script.js"></script>
+</head>
+<body>
+<div>
+<img
+        id="i0"
+        class="image"
+        src="yoda.jpg"
+/>
+<img
+        id="i1"
+        class="image1"
+        src="yoda.jpg"
+/>
+<img
+        id="i2"
+        class="image2"
+        src="yoda.jpg"
+/>
+<img
+        id="i3"
+        class="image3"
+        src="yoda.jpg"
+/>
+<img
+        id="i4"
+        class="image4"
+        src="yoda.jpg"
+/>
+<img
+        id="i5"
+        class="image5"
+        src="yoda.jpg"
+/>
+<img
+        id="i6"
+        class="image6"
+        src="yoda.jpg"
+/>
+</div>
+<button style="position:relative; top:400px" onclick="startGlitch(intervalID)">  GLITCH ME </button>
+<button style="position:relative; top:400px" onclick="reset()">  RESET ME </button>
+</body>
+<script>
+    let intervalID  =null;
+    const  getRandomInt = (max) => {
+
+        return Math.floor(Math.random() * Math.floor(max)) * (Math.round(Math.random()) ? 1 : -1);
+    }
+
+    const  fuckMeUp = (element) => {
+        element.style.left = getRandomInt(10)+"px";
+        element.style.transform= "perspective(600px) rotateY("+getRandomInt(50)+"deg)";
+    }
+
+    const glitchMe =() =>{
+        let image0 = document.getElementById("i0");
+
+         var audio = new Audio('glitch.mov');
+         audio.play();
+
+        for (i = 1; i <= 6; i++) {
+            fuckMeUp(document.getElementById("i" + i));
+            document.getElementById("i" + i).style.opacity = "0.7";
+        }
+        image0.style.opacity="0";
+
+    };
+
+    const startGlitch=()=>{
+        intervalID = window.setInterval(glitchMe, 100);
+    }
+
+
+    const reset = () =>{
+        window.clearInterval(intervalID);
+
+        document.getElementById("i0").style.opacity="1";
+
+        for (i = 1; i <= 6; i++) {
+            document.getElementById("i" + i).style.opacity = "0";
+        }
+    }
+
+    // startGlitch()
+    // setTimeout(function(){
+    //     reset();
+    //     startGlitch();
+    // }, 1000);
+
+
+
+
+</script>
+</html>
